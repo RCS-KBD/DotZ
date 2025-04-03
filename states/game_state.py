@@ -83,6 +83,7 @@ class PlayState(GameState):
         self.all_sprites.add(self.player)
         
         # Add entities
+        self.entities = self.all_sprites
         self.spawn_test_entities()
     
     def spawn_buildings(self):
@@ -275,23 +276,26 @@ class PlayState(GameState):
 class PauseState(GameState):
     def __init__(self, game):
         super().__init__(game)
+        self.options = ['Resume', 'Restart', 'Quit to Menu']
     
     def update(self, dt):
         pass
     
     def draw(self, screen):
         # Draw semi-transparent overlay
-        overlay = pygame.Surface(screen.get_size())
+        overlay = pygame.Surface((screen.get_width(), screen.get_height()))
         overlay.fill((0, 0, 0))
         overlay.set_alpha(128)
         screen.blit(overlay, (0, 0))
         
-        # Draw pause text
-        font = pygame.font.Font(None, 48)
-        text = font.render('PAUSED', True, (255, 255, 255))
-        rect = text.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2))
-        screen.blit(text, rect)
+        # Draw pause menu options
+        font = pygame.font.Font(None, 36)
+        for i, option in enumerate(self.options):
+            text = font.render(option, True, (255, 255, 255))
+            rect = text.get_rect(center=(screen.get_width() // 2, 200 + i * 50))
+            screen.blit(text, rect)
     
     def handle_event(self, event):
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-            self.game.change_state('play')
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                self.game.change_state('play')

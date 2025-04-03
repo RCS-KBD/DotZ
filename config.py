@@ -2,6 +2,7 @@
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
 FPS = 60
+GRAVITY = 9.81  # Standard gravity in m/s²
 
 # Colors
 WHITE = (255, 255, 255)
@@ -61,7 +62,7 @@ STATE_PAUSED = 'pause'
 STATE_GAME_OVER = 'game_over'
 
 # Asset settings
-ASSET_DIR = 'assets'
-IMAGE_DIR = f'{ASSET_DIR}/images'
-SOUND_DIR = f'{ASSET_DIR}/sounds'
-FONT_DIR = f'{ASSET_DIR}/fonts'
+ASSETS_DIR = 'assets'  # Changed from ASSET_DIR to match test expectations
+IMAGES_DIR = f'{ASSETS_DIR}/images'  # Changed from IMAGE_DIR
+SOUNDS_DIR = f'{ASSETS_DIR}/sounds'  # Changed from SOUND_DIR
+FONTS_DIR = f'{ASSETS_DIR}/fonts'    # Changed from FONT_DIR
